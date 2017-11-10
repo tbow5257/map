@@ -48,4 +48,9 @@
     <script type='text/javascript' src='googleMaps.js'></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDokPjhnIzPmpjcwbsl3SekDsJ6EDdGYX8&callback=initMap">
     </script>
+    <script type="text/javascript">
+        $.ajax("https://api.yelp.com/v2/business/the-museum-of-contemporary-art-los-angeles").done(function(response) {
+            console.log(response)
+        })
+    </script>
 </body>
