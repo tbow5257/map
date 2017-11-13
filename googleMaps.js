@@ -1,4 +1,5 @@
 var markers = [];
+var initMarkers;
 
 function initMap() {
     var uluru = {
@@ -16,26 +17,26 @@ function initMap() {
             lat: 34.0170,
             lng: -118.2888,
         },
-        title: "National History Museum",
-        yelpId: "natural-history-museum-los-angeles?osq=national+history+museum"
+        title: "The National History Museum",
+        flickrTag: "la+brea+tarpits"
     };
 
     const contemporaryArts = {
-      position: {
-          lat: 34.05333,
-          lng: -118.25083,
-      },
-      title: "Museum of Contemporary Arts",
-      yelpId: "the-museum-of-contemporary-art-los-angeles"
+        position: {
+            lat: 34.05333,
+            lng: -118.25083,
+        },
+        title: "The Museum of Contemporary Arts",
+        flickrTag: "Museum+of+Contemporary+Arts"
     };
 
     const hammer = {
-      position: {
-          lat: 34.0596,
-          lng: -118.4438,
-      },
-      title: "Hammer Museum",
-      yelpId: "hammer-museum-los-angeles"
+        position: {
+            lat: 34.0596,
+            lng: -118.4438,
+        },
+        title: "The Hammer Museum",
+        flickrTag: "hammer+museum"
     };
 
     const getty = {
@@ -44,7 +45,7 @@ function initMap() {
             lng: -118.4741,
         },
         title: "The Getty Museum",
-        yelpId: "the-getty-center-los-angeles-2"
+        flickrTag: "the+getty+center"
     };
 
     const iceCream = {
@@ -52,10 +53,10 @@ function initMap() {
             lat: 34.0342,
             lng: -118.2316,
         },
-        title: "Museum of Ice Cream",
-        yelpId: "museum-of-ice-cream-los-angeles-4"
+        title: "The Museum of Ice Cream",
+        flickrTag: "museum+of+ice+cream"
     };
-    var initMarkers = [nationalHistory, contemporaryArts, hammer, getty, iceCream];
+    initMarkers = [nationalHistory, contemporaryArts, hammer, getty, iceCream];
 
     initMarkers.forEach(function(location) {
         addMarker(location);
@@ -67,6 +68,38 @@ function initMap() {
             tite: location.title,
             map: map,
         });
+        marker.addListener('click', toggleBounce);
+        attachImages(location);
+
+        function attachImages(location) {
+            var image;
+            $.ajax({
+                url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=612c51845db13e59fea3677771fb3613&tags=" + location.flickrTag + "&per_page=5&page=1&format=json&nojsoncallback=1"
+            }).done(function(success) {
+                var photos = success.photos.photo;
+                var content = `<h2>Images of ${location.title}</h2>`;
+                if (photos.length > 0) {
+                    photos.forEach(function(photo) {
+                        content += `<img src="https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg" height="100" width="100">`;
+                    })
+                    var infowindow = new google.maps.InfoWindow({
+                        content: content
+                    });
+
+                    marker.addListener('click', function() {
+                        infowindow.open(marker.get('map'), marker);
+                    });
+                }
+            })
+
+        }
         markers.push(marker);
+
+        function toggleBounce() {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(function() {
+                marker.setAnimation(null);
+            }, 750);
+        }
     }
 }

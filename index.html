@@ -12,12 +12,18 @@
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                       Brand
+                       Museums in LA
                     </a>
                 </li>
                 <li>
-                    <input type="text" name="" placeholder="Search..." value="">
-                    <button type="button" name="button">Search</button>
+                    <input type="text" data-bind="textInput: filter" placeholder="Search for places..">
+                    <div>
+                        <ul data-bind="foreach: visiblePlaces">
+                            <li>
+                                <input value="submit" type="button">
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </nav>
@@ -40,6 +46,10 @@
 
     </div>
     <!-- /#wrapper -->
+    <!-- <img data-bind="attr:{src: image}" alt=""> -->
+    <!-- <img src="https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg" alt=""> -->
+
+    <!-- <button type="button" name="button" data-bind="click: datClick">Click Meh</button> -->
 
     <script type='text/javascript' src='bower_components/jquery/dist/jquery.min.js'></script>
     <script type='text/javascript' src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
@@ -48,9 +58,5 @@
     <script type='text/javascript' src='googleMaps.js'></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDokPjhnIzPmpjcwbsl3SekDsJ6EDdGYX8&callback=initMap">
     </script>
-    <script type="text/javascript">
-        $.ajax("https://api.yelp.com/v2/business/the-museum-of-contemporary-art-los-angeles").done(function(response) {
-            console.log(response)
-        })
-    </script>
+
 </body>
