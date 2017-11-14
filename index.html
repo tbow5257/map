@@ -16,14 +16,7 @@
                     </a>
                 </li>
                 <li>
-                    <input type="text" data-bind="textInput: filter" placeholder="Search for places..">
-                    <div>
-                        <ul data-bind="foreach: visiblePlaces">
-                            <li>
-                                <input value="submit" type="button">
-                            </li>
-                        </ul>
-                    </div>
+                    <input type="text" data-bind="textInput: search" class="col-sm-11" placeholder="Search for places..">
                 </li>
             </ul>
         </nav>
@@ -45,18 +38,13 @@
         <!-- /#page-content-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
-    <!-- <img data-bind="attr:{src: image}" alt=""> -->
-    <!-- <img src="https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg" alt=""> -->
-
-    <!-- <button type="button" name="button" data-bind="click: datClick">Click Meh</button> -->
 
     <script type='text/javascript' src='bower_components/jquery/dist/jquery.min.js'></script>
     <script type='text/javascript' src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
     <script type='text/javascript' src='bower_components/knockout/dist/knockout.js'></script>
-    <script type='text/javascript' src='index.js'></script>
     <script type='text/javascript' src='googleMaps.js'></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDokPjhnIzPmpjcwbsl3SekDsJ6EDdGYX8&callback=initMap">
     </script>
+    <script type='text/javascript' src='index.js'></script>
 
 </body>

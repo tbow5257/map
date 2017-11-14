@@ -1,5 +1,50 @@
 var markers = [];
-var initMarkers;
+
+const nationalHistory = {
+    position: {
+        lat: 34.0170,
+        lng: -118.2888,
+    },
+    title: "The National History Museum",
+    flickrTag: "la+brea+tarpits"
+};
+
+const contemporaryArts = {
+    position: {
+        lat: 34.05333,
+        lng: -118.25083,
+    },
+    title: "The Museum of Contemporary Arts",
+    flickrTag: "Museum+of+Contemporary+Arts"
+};
+
+const hammer = {
+    position: {
+        lat: 34.0596,
+        lng: -118.4438,
+    },
+    title: "The Hammer Museum",
+    flickrTag: "hammer+museum"
+};
+
+const getty = {
+    position: {
+        lat: 34.0780,
+        lng: -118.4741,
+    },
+    title: "The Getty Museum",
+    flickrTag: "the+getty+center"
+};
+
+const iceCream = {
+    position: {
+        lat: 34.0342,
+        lng: -118.2316,
+    },
+    title: "The Museum of Ice Cream",
+    flickrTag: "museum+of+ice+cream"
+};
+var initMarkers = [nationalHistory, contemporaryArts, hammer, getty, iceCream];
 
 function initMap() {
     var uluru = {
@@ -12,52 +57,6 @@ function initMap() {
         center: uluru
     });
 
-    const nationalHistory = {
-        position: {
-            lat: 34.0170,
-            lng: -118.2888,
-        },
-        title: "The National History Museum",
-        flickrTag: "la+brea+tarpits"
-    };
-
-    const contemporaryArts = {
-        position: {
-            lat: 34.05333,
-            lng: -118.25083,
-        },
-        title: "The Museum of Contemporary Arts",
-        flickrTag: "Museum+of+Contemporary+Arts"
-    };
-
-    const hammer = {
-        position: {
-            lat: 34.0596,
-            lng: -118.4438,
-        },
-        title: "The Hammer Museum",
-        flickrTag: "hammer+museum"
-    };
-
-    const getty = {
-        position: {
-            lat: 34.0780,
-            lng: -118.4741,
-        },
-        title: "The Getty Museum",
-        flickrTag: "the+getty+center"
-    };
-
-    const iceCream = {
-        position: {
-            lat: 34.0342,
-            lng: -118.2316,
-        },
-        title: "The Museum of Ice Cream",
-        flickrTag: "museum+of+ice+cream"
-    };
-    initMarkers = [nationalHistory, contemporaryArts, hammer, getty, iceCream];
-
     initMarkers.forEach(function(location) {
         addMarker(location);
     });
@@ -65,7 +64,7 @@ function initMap() {
     function addMarker(location) {
         var marker = new google.maps.Marker({
             position: location.position,
-            tite: location.title,
+            customInfo: location.title,
             map: map,
         });
         marker.addListener('click', toggleBounce);

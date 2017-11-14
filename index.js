@@ -27,15 +27,24 @@ $(document).ready(function() {
     });
 });
 
-function viewModel() {
-    var self = this;
-    self.places = ko.observableArray(initMarkers);
-    this.filter = ko.observable();
-    this.visiblePlaces = ko.computed(function() {
-        return this.places().filter(function(place) {
-            if (!self.filter() || place.title.toLowerCase().indexOf(self.filter().toLowerCase()) !== -1)
-                return place;
-        });
-    }, this);
+var myViewModel = {
+    search: ko.observable(''),
+    list: ko.observableArray(initMarkers),
 };
-// ko.applyBindings(myViewModel);
+
+myViewModel.markers = ko.dependentObservable(function() {
+    var self = this;
+    var search = self.search().toLowerCase();
+    if(markers.length > 0) {
+    }
+    return ko.utils.arrayFilter(markers, function(marker) {
+        if (marker.customInfo.toLowerCase().indexOf(search) >= 0) {
+            marker.setVisible(true);
+        } else {
+            marker.setVisible(false);
+            // setAllMap();
+        }
+    });
+}, myViewModel);
+
+ko.applyBindings(myViewModel);
