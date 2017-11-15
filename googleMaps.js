@@ -1,6 +1,7 @@
 var markers = [];
 
 const nationalHistory = {
+    index: 0,
     position: {
         lat: 34.0170,
         lng: -118.2888,
@@ -10,6 +11,7 @@ const nationalHistory = {
 };
 
 const contemporaryArts = {
+    index: 1,
     position: {
         lat: 34.05333,
         lng: -118.25083,
@@ -19,6 +21,7 @@ const contemporaryArts = {
 };
 
 const hammer = {
+    index: 2,
     position: {
         lat: 34.0596,
         lng: -118.4438,
@@ -28,6 +31,7 @@ const hammer = {
 };
 
 const getty = {
+    index: 3,
     position: {
         lat: 34.0780,
         lng: -118.4741,
@@ -37,6 +41,7 @@ const getty = {
 };
 
 const iceCream = {
+    index: 4,
     position: {
         lat: 34.0342,
         lng: -118.2316,
@@ -44,7 +49,16 @@ const iceCream = {
     title: "The Museum of Ice Cream",
     flickrTag: "museum+of+ice+cream"
 };
-var initMarkers = [nationalHistory, contemporaryArts, hammer, getty, iceCream];
+
+var locationsObject = {
+    nationalHistory,
+    contemporaryArts,
+    hammer,
+    getty,
+    iceCream,
+}
+
+// var initMarkers = [nationalHistory, contemporaryArts, hammer, getty, iceCream];
 
 function initMap() {
     var uluru = {
@@ -57,14 +71,14 @@ function initMap() {
         center: uluru
     });
 
-    initMarkers.forEach(function(location) {
-        addMarker(location);
-    });
-
+    for (key in locationsObject) {
+        addMarker(locationsObject[key]);
+    }
     function addMarker(location) {
         var marker = new google.maps.Marker({
             position: location.position,
             customInfo: location.title,
+            index: location.index,
             map: map,
         });
         marker.addListener('click', toggleBounce);
@@ -73,23 +87,31 @@ function initMap() {
         function attachImages(location) {
             var image;
             $.ajax({
-                url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=612c51845db13e59fea3677771fb3613&tags=" + location.flickrTag + "&per_page=5&page=1&format=json&nojsoncallback=1"
-            }).done(function(success) {
-                var photos = success.photos.photo;
-                var content = `<h2>Images of ${location.title}</h2>`;
-                if (photos.length > 0) {
-                    photos.forEach(function(photo) {
-                        content += `<img src="https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg" height="100" width="100">`;
-                    })
-                    var infowindow = new google.maps.InfoWindow({
-                        content: content
-                    });
+                url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=670f68b5652539e20b8b1ed74da4ca5b&tags=" + location.flickrTag + "&per_page=5&page=1&format=json&nojsoncallback=1"
+            })
+            .done(function(success) {
+                if (success.photos) {
+                    var photos = success.photos.photo;
+                    var content = `<h2>Images of ${location.title}</h2>`;
+                    if (photos.length > 0) {
+                        photos.forEach(function(photo) {
+                            content += `<img src="https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg" height="100" width="100">`;
+                        })
+                        var infowindow = new google.maps.InfoWindow({
+                            content: content
+                        });
 
-                    marker.addListener('click', function() {
-                        infowindow.open(marker.get('map'), marker);
-                    });
+                        marker.addListener('click', function() {
+                            infowindow.open(marker.get('map'), marker);
+                        });
+                    }
+                } else {
+                    alert("Flickr is currently not working!");
                 }
             })
+            .fail(function(error) {
+                alert("There was an error with the Flickr API, please refresh!");
+            });
 
         }
         markers.push(marker);

@@ -27,22 +27,42 @@ $(document).ready(function() {
     });
 });
 
+var Location = function(position, title, flickrTag) {
+    var self = this;
+    self.position = ko.observable(position);
+    self.title = ko.observable(title);
+    self.flickrTag = ko.observable(flickrTag);
+    self.show = ko.observable(true);
+    return self;
+};
+
 var myViewModel = {
     search: ko.observable(''),
-    list: ko.observableArray(initMarkers),
+    list: ko.observableArray([{
+        museum: new Location(nationalHistory.position, nationalHistory.title, nationalHistory.flickrTag)
+    }, {
+        museum: new Location(contemporaryArts.position, contemporaryArts.title, contemporaryArts.flickrTag)
+    }, {
+        museum: new Location(hammer.position, hammer.title, hammer.flickrTag)
+    }, {
+        museum: new Location(getty.position, getty.title, getty.flickrTag)
+    }, {
+        museum: new Location(iceCream.position, iceCream.title, iceCream.flickrTag)
+    }])
+    // list: ko.observableArray(initMarkers)
 };
 
 myViewModel.markers = ko.dependentObservable(function() {
     var self = this;
     var search = self.search().toLowerCase();
-    if(markers.length > 0) {
-    }
     return ko.utils.arrayFilter(markers, function(marker) {
         if (marker.customInfo.toLowerCase().indexOf(search) >= 0) {
+            console.log(myViewModel.list()[marker.index])
+            myViewModel.list()[marker.index].museum.show = true;
             marker.setVisible(true);
         } else {
+            myViewModel.list()[marker.index].museum.show = false;
             marker.setVisible(false);
-            // setAllMap();
         }
     });
 }, myViewModel);

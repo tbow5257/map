@@ -17,6 +17,15 @@
                 </li>
                 <li>
                     <input type="text" data-bind="textInput: search" class="col-sm-11" placeholder="Search for places..">
+                    <div>
+                        <ul data-bind="foreach: list">
+                            <li data-bind="if: museum.show">
+                                <div data-bind="text: museum.title">
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </nav>
