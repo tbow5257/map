@@ -79,7 +79,7 @@ function initMap() {
             position: location.position,
             customInfo: location.title,
             index: location.index,
-            map: map,
+            map: map
         });
         marker.addListener('click', toggleBounce);
         attachImages(location);

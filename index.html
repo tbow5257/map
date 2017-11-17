@@ -1,6 +1,7 @@
 <head>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -17,15 +18,14 @@
                 </li>
                 <li>
                     <input type="text" data-bind="textInput: search" class="col-sm-11" placeholder="Search for places..">
-                    <div>
+                        <div class="museum-list">
                         <ul data-bind="foreach: list">
-                            <li data-bind="if: museum.show">
-                                <div data-bind="text: museum.title">
-
-                                </div>
-                            </li>
+                            <div data-bind="visible: museum.show">
+                                <li data-bind="text: museum.title">
+                                </li>
+                            </div>
                         </ul>
-                    </div>
+                        </div>
                 </li>
             </ul>
         </nav>

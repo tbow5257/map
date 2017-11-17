@@ -57,12 +57,12 @@ myViewModel.markers = ko.dependentObservable(function() {
     var search = self.search().toLowerCase();
     return ko.utils.arrayFilter(markers, function(marker) {
         if (marker.customInfo.toLowerCase().indexOf(search) >= 0) {
-            console.log(myViewModel.list()[marker.index])
-            myViewModel.list()[marker.index].museum.show = true;
+            console.log(myViewModel.list()[marker.index]);
             marker.setVisible(true);
+            return myViewModel.list()[marker.index].museum.show(true);
         } else {
-            myViewModel.list()[marker.index].museum.show = false;
             marker.setVisible(false);
+            return myViewModel.list()[marker.index].museum.show(false);
         }
     });
 }, myViewModel);
