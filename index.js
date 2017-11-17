@@ -27,27 +27,28 @@ $(document).ready(function() {
     });
 });
 
-var Location = function(position, title, flickrTag) {
+var Location = function(position, title, flickrTag, index) {
     var self = this;
     self.position = ko.observable(position);
     self.title = ko.observable(title);
     self.flickrTag = ko.observable(flickrTag);
     self.show = ko.observable(true);
+    self.index = index;
     return self;
 };
 
 var myViewModel = {
     search: ko.observable(''),
     list: ko.observableArray([{
-        museum: new Location(nationalHistory.position, nationalHistory.title, nationalHistory.flickrTag)
+        museum: new Location(nationalHistory.position, nationalHistory.title, nationalHistory.flickrTag, nationalHistory.index)
     }, {
-        museum: new Location(contemporaryArts.position, contemporaryArts.title, contemporaryArts.flickrTag)
+        museum: new Location(contemporaryArts.position, contemporaryArts.title, contemporaryArts.flickrTag, contemporaryArts.index)
     }, {
-        museum: new Location(hammer.position, hammer.title, hammer.flickrTag)
+        museum: new Location(hammer.position, hammer.title, hammer.flickrTag, hammer.index)
     }, {
-        museum: new Location(getty.position, getty.title, getty.flickrTag)
+        museum: new Location(getty.position, getty.title, getty.flickrTag, getty.index)
     }, {
-        museum: new Location(iceCream.position, iceCream.title, iceCream.flickrTag)
+        museum: new Location(iceCream.position, iceCream.title, iceCream.flickrTag, iceCream.index)
     }])
     // list: ko.observableArray(initMarkers)
 };
@@ -66,5 +67,15 @@ myViewModel.markers = ko.dependentObservable(function() {
         }
     });
 }, myViewModel);
+
+myViewModel.clickaction=ko.dependentObservable(function() {
+    varself = this;
+    self.markerClick = function (data) {
+        console.log(data);
+        //console.log(myViewModel.list.museum.index); nope
+        google.maps.event.trigger(markers[data], 'click');
+    }
+});
+
 
 ko.applyBindings(myViewModel);

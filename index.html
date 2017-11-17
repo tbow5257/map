@@ -21,7 +21,7 @@
                         <div class="museum-list">
                         <ul data-bind="foreach: list">
                             <div data-bind="visible: museum.show">
-                                <li data-bind="text: museum.title">
+                                <li data-bind="text: museum.title, click: markerClick.bind($data, museum.index)">
                                 </li>
                             </div>
                         </ul>
