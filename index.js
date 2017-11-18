@@ -1,37 +1,4 @@
-/*
-$(document).ready(function() {
-*/
-/*
-    var trigger = $('.hamburger'),
-        overlay = $('.overlay'),
-        isClosed = false;
-
-    trigger.click(function() {
-        hamburger_cross();
-    });
-
-    function hamburger_cross() {
-
-        if (isClosed == true) {
-            overlay.hide();
-            trigger.removeClass('is-open');
-            trigger.addClass('is-closed');
-            isClosed = false;
-        } else {
-            overlay.show();
-            trigger.removeClass('is-closed');
-            trigger.addClass('is-open');
-            isClosed = true;
-        }
-    }
-
-    $('[data-toggle="offcanvas"]').click(function() {
-        $('#wrapper').toggleClass('toggled');
-    });
-});
-*/
-
-var Location = function(position, title, flickrTag, index) {
+var Location = function (position, title, flickrTag, index) {
     var self = this;
     self.position = ko.observable(position);
     self.title = ko.observable(title);
@@ -57,10 +24,12 @@ var myViewModel = {
     // list: ko.observableArray(initMarkers)
 };
 
-myViewModel.markers = ko.dependentObservable(function() {
+var infoWindow;
+
+myViewModel.markers = ko.dependentObservable(function () {
     var self = this;
     var search = self.search().toLowerCase();
-    return ko.utils.arrayFilter(markers, function(marker) {
+    return ko.utils.arrayFilter(markers, function (marker) {
         if (marker.customInfo.toLowerCase().indexOf(search) >= 0) {
             console.log(myViewModel.list()[marker.index]);
             marker.setVisible(true);
@@ -72,7 +41,7 @@ myViewModel.markers = ko.dependentObservable(function() {
     });
 }, myViewModel);
 
-myViewModel.clickaction=ko.dependentObservable(function() {
+myViewModel.clickaction = ko.dependentObservable(function () {
     varself = this;
     self.markerClick = function (data) {
         console.log(data);

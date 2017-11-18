@@ -56,11 +56,12 @@ var locationsObject = {
     hammer,
     getty,
     iceCream,
-}
+};
 
-// var initMarkers = [nationalHistory, contemporaryArts, hammer, getty, iceCream];
 
 function initMap() {
+    var infowindow = new google.maps.InfoWindow();
+
     var uluru = {
         lat: 34.0522,
         lng: -118.2437
@@ -96,10 +97,9 @@ function initMap() {
                     if (photos.length > 0) {
                         photos.forEach(function(photo) {
                             content += `<img src="https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg" height="100" width="100">`;
-                        })
-                        var infowindow = new google.maps.InfoWindow({
-                            content: content
                         });
+
+                        console.log(content);
 
                         marker.addListener('click', function() {
                             infowindow.open(marker.get('map'), marker);
