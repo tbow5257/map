@@ -1,4 +1,7 @@
+/*
 $(document).ready(function() {
+*/
+/*
     var trigger = $('.hamburger'),
         overlay = $('.overlay'),
         isClosed = false;
@@ -26,6 +29,7 @@ $(document).ready(function() {
         $('#wrapper').toggleClass('toggled');
     });
 });
+*/
 
 var Location = function(position, title, flickrTag, index) {
     var self = this;

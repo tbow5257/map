@@ -1,59 +1,50 @@
 <head>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="wrapper">
-        <div class="overlay"></div>
-
-        <!-- Sidebar -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-            <ul class="nav sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                       Museums in LA
-                    </a>
-                </li>
-                <li>
-                    <input type="text" data-bind="textInput: search" class="col-sm-11" placeholder="Search for places..">
-                        <div class="museum-list">
-                        <ul data-bind="foreach: list">
-                            <div data-bind="visible: museum.show">
-                                <li data-bind="text: museum.title, click: markerClick.bind($data, museum.index)">
-                                </li>
-                            </div>
-                        </ul>
-                        </div>
-                </li>
-            </ul>
-        </nav>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
+<div class="container">
+    <!-- Page Content -->
+    <div class="">
         <div id="page-content-wrapper">
-            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-                <span class="hamb-top"></span>
-                <span class="hamb-middle"></span>
-                <span class="hamb-bottom"></span>
-            </button>
-            <div class="container">
-                <h3>My Google Maps Demo</h3>
-                <div id="map"></div>
+            <div class="container ">
+                <h3>Museum Mapp App</h3>
+                <div id="map">
+                </div>
+                <div class="">
+                    <div class="custombar col-md-6">
+                        <!-- Sidebar -->
+                        <nav>
+                            <div class="search">
+                                <input data-bind="textInput: search" class="col-sm-11" placeholder = "Search for places">
+                            </div>
+                            <br>
+                            <div class="museum-list">
+                                <div class="col" data-bind="foreach: list">
+                                    <div data-bind="visible: museum.show">
+                                        <div data-bind="text: museum.title, click: markerClick.bind($data, museum.index)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
 
+                </div>
             </div>
+            <!-- /#page-content-wrapper -->
         </div>
-        <!-- /#page-content-wrapper -->
-
     </div>
+</div>
 
-    <script type='text/javascript' src='bower_components/jquery/dist/jquery.min.js'></script>
-    <script type='text/javascript' src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
-    <script type='text/javascript' src='bower_components/knockout/dist/knockout.js'></script>
-    <script type='text/javascript' src='googleMaps.js'></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDokPjhnIzPmpjcwbsl3SekDsJ6EDdGYX8&callback=initMap">
-    </script>
-    <script type='text/javascript' src='index.js'></script>
+<script type='text/javascript' src='bower_components/jquery/dist/jquery.min.js'></script>
+<script type='text/javascript' src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
+<script type='text/javascript' src='bower_components/knockout/dist/knockout.js'></script>
+<script type='text/javascript' src='googleMaps.js'></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDokPjhnIzPmpjcwbsl3SekDsJ6EDdGYX8&callback=initMap">
+</script>
+<script type='text/javascript' src='index.js'></script>
 
 </body>
