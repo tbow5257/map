@@ -1,1 +1,18 @@
-For the side navbar I used the template code from https://codediode.io/lessons/198631-design-a-responsive-side-menu-for-bootstrap-4
+Museum Map App (Maap)
+===============================
+
+### Made for Udacity Front End Project
+
+
+By Thomas Bowen
+
+
+## Description
+
+
+Responsive app that plots Los Angeles museums on Google Maps and provides image previews from Flickr.
+
+## Installation
+
+Download the program through GIT clone or ZIP. Then load index.html on your browser of choice.
+

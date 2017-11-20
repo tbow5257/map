@@ -1,4 +1,6 @@
-var markers = [];
+//Array of marker data
+
+let markers = [];
 
 const nationalHistory = {
     index: 0,
@@ -60,10 +62,10 @@ var locationsObject = {
     contemporaryArts,
     hammer,
     getty,
-    iceCream,
+    iceCream
 };
 
-
+// Loads map and prepares pop-up windows with marker data
 function initMap() {
     var infowindow = new google.maps.InfoWindow();
 

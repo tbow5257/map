@@ -8,6 +8,7 @@ var Location = function (position, title, flickrTag, index) {
     return self;
 };
 
+//Viewmodel for sidebar list
 var myViewModel = {
     search: ko.observable(''),
     list: ko.observableArray([{
@@ -26,6 +27,7 @@ var myViewModel = {
 
 var infoWindow;
 
+//Checks search bar for input and filters sidebar list in accordance
 myViewModel.markers = ko.dependentObservable(function () {
     var self = this;
     var search = self.search().toLowerCase();
@@ -40,6 +42,7 @@ myViewModel.markers = ko.dependentObservable(function () {
     });
 }, myViewModel);
 
+//Clicking on a marker on list launches marker on map
 myViewModel.clickaction = ko.dependentObservable(function () {
     varself = this;
     self.markerClick = function (data) {
