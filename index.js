@@ -31,7 +31,6 @@ myViewModel.markers = ko.dependentObservable(function () {
     var search = self.search().toLowerCase();
     return ko.utils.arrayFilter(markers, function (marker) {
         if (marker.customInfo.toLowerCase().indexOf(search) >= 0) {
-            console.log(myViewModel.list()[marker.index]);
             marker.setVisible(true);
             return myViewModel.list()[marker.index].museum.show(true);
         } else {
@@ -44,8 +43,6 @@ myViewModel.markers = ko.dependentObservable(function () {
 myViewModel.clickaction = ko.dependentObservable(function () {
     varself = this;
     self.markerClick = function (data) {
-        console.log(data);
-        //console.log(myViewModel.list.museum.index); nope
         google.maps.event.trigger(markers[data], 'click');
     }
 });

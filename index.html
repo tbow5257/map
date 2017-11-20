@@ -12,25 +12,22 @@
                 <h3>Museum Mapp App</h3>
                 <div id="map">
                 </div>
-                <div class="">
-                    <div class="custombar col-md-6">
-                        <!-- Sidebar -->
-                        <nav>
-                            <div class="search">
-                                <input data-bind="textInput: search" class="col-sm-11" placeholder = "Search for places">
-                            </div>
-                            <br>
-                            <div class="museum-list">
-                                <div class="col" data-bind="foreach: list">
-                                    <div data-bind="visible: museum.show">
-                                        <div data-bind="text: museum.title, click: markerClick.bind($data, museum.index)">
-                                        </div>
+                <div class="custombar">
+                    <!-- Sidebar -->
+                    <nav>
+                        <div class="search">
+                            <input data-bind="textInput: search" class="col-sm-11" placeholder="Search for places">
+                        </div>
+                        <br>
+                        <div class="museum-list">
+                            <div class="col" data-bind="foreach: list">
+                                <div data-bind="visible: museum.show">
+                                    <div data-bind="text: museum.title, click: markerClick.bind($data, museum.index)">
                                     </div>
                                 </div>
                             </div>
-                        </nav>
-                    </div>
-
+                        </div>
+                    </nav>
                 </div>
             </div>
             <!-- /#page-content-wrapper -->
