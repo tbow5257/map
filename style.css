@@ -26,7 +26,7 @@ body {
 
 .custombar {
     width: 370px;
-    bottom: 17%;
+    bottom: 21%;
     position: absolute;
     z-index: 100;
     background-color: white;
