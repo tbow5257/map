@@ -57,7 +57,7 @@ const iceCream = {
     flickrTag: "museum+of+ice+cream"
 };
 
-var locationsObject = {
+let locationsObject = {
     nationalHistory,
     contemporaryArts,
     hammer,
@@ -67,9 +67,9 @@ var locationsObject = {
 
 // Loads map and prepares pop-up windows with marker data
 function initMap() {
-    var infowindow = new google.maps.InfoWindow();
+    let infowindow = new google.maps.InfoWindow();
 
-    var uluru = {
+    let uluru = {
         lat: 34.0522,
         lng: -118.2437
     };
@@ -84,7 +84,7 @@ function initMap() {
     }
 
     function addMarker(location) {
-        var marker = new google.maps.Marker({
+        let marker = new google.maps.Marker({
             position: location.position,
             customInfo: location.title,
             descrip: location.description,
@@ -95,14 +95,14 @@ function initMap() {
         attachImages(location);
 
         function attachImages(location) {
-            var image;
+            let image;
             $.ajax({
                 url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=670f68b5652539e20b8b1ed74da4ca5b&tags=" + location.flickrTag + "&per_page=5&page=1&format=json&nojsoncallback=1"
             })
                 .done(function (success) {
                     if (success.photos) {
-                        var photos = success.photos.photo;
-                        var content = `<h2>${location.title}</h2> <br> <p>${location.description}</p> <br>  <h3>Images from Flickr</h3>`;
+                        let photos = success.photos.photo;
+                        let content = `<h2>${location.title}</h2> <br> <p>${location.description}</p> <br>  <h3>Images from Flickr</h3>`;
                         if (photos.length > 0) {
                             photos.forEach(function (photo) {
                                 content += `<img src="https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg" height="100" width="100">`;

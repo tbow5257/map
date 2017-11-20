@@ -1,5 +1,5 @@
-var Location = function (position, title, flickrTag, index) {
-    var self = this;
+let Location = function (position, title, flickrTag, index) {
+    let self = this;
     self.position = ko.observable(position);
     self.title = ko.observable(title);
     self.flickrTag = ko.observable(flickrTag);
@@ -9,7 +9,7 @@ var Location = function (position, title, flickrTag, index) {
 };
 
 //Viewmodel for sidebar list
-var myViewModel = {
+let myViewModel = {
     search: ko.observable(''),
     list: ko.observableArray([{
         museum: new Location(nationalHistory.position, nationalHistory.title, nationalHistory.flickrTag, nationalHistory.index)
@@ -25,12 +25,12 @@ var myViewModel = {
     // list: ko.observableArray(initMarkers)
 };
 
-var infoWindow;
+let infoWindow;
 
 //Checks search bar for input and filters sidebar list in accordance
 myViewModel.markers = ko.dependentObservable(function () {
-    var self = this;
-    var search = self.search().toLowerCase();
+    let self = this;
+    let search = self.search().toLowerCase();
     return ko.utils.arrayFilter(markers, function (marker) {
         if (marker.customInfo.toLowerCase().indexOf(search) >= 0) {
             marker.setVisible(true);
@@ -47,7 +47,7 @@ myViewModel.clickaction = ko.dependentObservable(function () {
     varself = this;
     self.markerClick = function (data) {
         google.maps.event.trigger(markers[data], 'click');
-    }
+    };
 });
 
 
