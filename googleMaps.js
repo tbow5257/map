@@ -79,8 +79,10 @@ function initMap() {
         center: uluru
     });
 
-    for (key in locationsObject) {
-        addMarker(locationsObject[key]);
+    for (let key in locationsObject) {
+        if(locationsObject.hasOwnProperty(key)) {
+            addMarker(locationsObject[key]);
+        }
     }
 
     function addMarker(location) {
