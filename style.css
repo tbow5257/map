@@ -51,3 +51,12 @@ body {
         height: 100%;
     }
 }
+
+.error {
+    position: absolute;
+    bottom: 27%;
+    margin: auto;
+    left: 36%;
+    z-index: 3000;
+    font-size: 30px;
+}

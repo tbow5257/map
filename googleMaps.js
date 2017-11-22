@@ -67,4 +67,17 @@ function initMap() {
             }, 750);
         }
     }
+
+}
+
+function mapsError() {
+    let cssClass;
+    let text = '<strong class="error">Google maps failed to load!</strong>';
+    let paragraph = document.createElement('p');
+
+    paragraph.classList.add(cssClass);
+    paragraph.innerHTML = text;
+
+    var body = document.getElementsByTagName('body')[0];
+    body.appendChild(paragraph);
 }
